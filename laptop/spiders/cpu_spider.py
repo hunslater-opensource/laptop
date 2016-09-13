@@ -1,37 +1,33 @@
 import scrapy
 import hashlib
 import os
-from laptop.items import GpuItem
+from laptop.items import CpuItem
 from BeautifulSoup import BeautifulSoup
 
 
-class GpuSpider(scrapy.Spider):
-    name = "gpu"
-    #allowed_domains = ["http://www.videocardbenchmark.net"]
-    start_urls = ['http://www.videocardbenchmark.net/gpu_list.php']
-
+class CpuSpider(scrapy.Spider):
+    name = "cpu"
+    #allowed_domains = ["http://www.cpubenchmark.net"]
+    start_urls = ['http://www.cpubenchmark.net/cpu_list.php']
     def parse(self, response):
         for sel in response.css("table.cpulist a"):
             url = sel.xpath('@href').extract()[0]
-            url = 'http://www.videocardbenchmark.net/' + url.replace("video_lookup.php?","gpu.php?")
+            url = 'http://www.cpubenchmark.net/' + url.replace("cpu_lookup.php?","cpu.php?")
             yield scrapy.Request(url, self.parse_item)
 
 
     def parse_item(self, response):
 
-        item = GpuItem()
+        item = CpuItem()
         item['link'] = response.url
         item['name'] = response.css('span.cpuname').xpath('text()').extract()[0]
 
         search = {
             'description': u'Description:',
-            #'processzor_modell': u'Videocard Category:',
             'other_name': u'Other names:',
-            #'memoria_merete': u'Videocard First Benchmarked:',
             'g3d_mark':u'G3DMark/\$Price:',
-            #'memoria_max_seb':u'Overall Rank:',
-            #'memoria_foglalat':u'Last Price Change:',
-
+            'clock':u'Clockspeed:',
+            'core':u'No of Cores:'
         }
 
         rank = u'Samples:'

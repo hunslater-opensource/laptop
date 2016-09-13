@@ -35,3 +35,24 @@ class ArukeresoItem(scrapy.Item):
     videokartya_model = scrapy.Field()
     videokartya_memoria = scrapy.Field()
     oprend = scrapy.Field()
+
+class GpuItem(scrapy.Item):
+    name = scrapy.Field()
+    link = scrapy.Field()
+    description = scrapy.Field()
+    other_name = scrapy.Field()
+    price = scrapy.Field()
+    rank = scrapy.Field()
+    g3d_mark = scrapy.Field()
+
+class CpuItem(scrapy.Item):
+    name = scrapy.Field()
+    link = scrapy.Field()
+    description = scrapy.Field()
+    other_name = scrapy.Field()
+    price = scrapy.Field()
+    rank = scrapy.Field()
+    g3d_mark = scrapy.Field()
+    clock = scrapy.Field()
+    core = scrapy.Field()
+
