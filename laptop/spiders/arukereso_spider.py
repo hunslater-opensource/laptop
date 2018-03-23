@@ -7,7 +7,8 @@ class ArukeresoSpider(scrapy.Spider):
     name = "arukereso"
     allowed_domains = ["www.arukereso.hu"]
     step = 25
-    builder = 'http://www.arukereso.hu/notebook-c3100/f:intel-core-i7-processzor,dedikalt/?start=%s'
+    #builder = 'http://www.arukereso.hu/notebook-c3100/f:intel-core-i7-processzor,dedikalt/?start=%s'
+    builder = 'https://www.arukereso.hu/notebook-c3100/f:dedikalt,ar=0-300000/?start=%s'
 
     start_urls = [
 
